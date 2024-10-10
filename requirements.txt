@@ -26,3 +26,4 @@ streamlit-on-Hover-tabs
 httpx-oauth
 firebase-admin
 streamlit-authenticator
+youtube-transcript-api
