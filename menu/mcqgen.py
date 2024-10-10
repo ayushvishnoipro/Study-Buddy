@@ -161,10 +161,18 @@ def main():
             
             st.markdown("---")
         
-        if st.button("Start New Quiz"):
+        # if st.button("Start New Quiz"):
+        #     st.session_state.quiz_data = None
+        #     st.session_state.user_answers = {}
+        #     st.session_state.quiz_submitted = False
+        #     st.session_state.score = 0
+        #     st.session_state.show_error = False
+        #     st.experimental_rerun()
+        def reset_quiz():
             st.session_state.quiz_data = None
             st.session_state.user_answers = {}
             st.session_state.quiz_submitted = False
             st.session_state.score = 0
             st.session_state.show_error = False
-            st.experimental_rerun()
+        if st.button("Start New Quiz"):
+            reset_quiz()
