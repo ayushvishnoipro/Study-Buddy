@@ -1,0 +1,4 @@
+[2024-10-08 13:59:50,580] 86 faiss.loader - INFO - Loading faiss with AVX2 support.
+[2024-10-08 13:59:50,620] 88 faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+[2024-10-08 14:31:59,128] 106 langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+[2024-10-08 14:32:38,432] 106 langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
