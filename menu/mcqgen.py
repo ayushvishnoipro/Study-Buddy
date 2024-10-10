@@ -13,7 +13,7 @@ with open(r"Response.json", 'r') as file:
 def main():
     
 
-    st.title("Real-Time MCQ Creator with LangChain & Google Gemini Pro")
+    st.title("QuizCraft: The MCQ Genie")
 
     # Initialize session state for quiz data and user answers
     if 'quiz_data' not in st.session_state:
