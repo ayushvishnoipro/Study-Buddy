@@ -6,6 +6,9 @@ Here’s a sample **README** file for your project:
 
 Study Buddy is an innovative, AI-powered educational platform that provides a set of powerful tools designed to enhance the learning experience. Whether you're preparing for a coding interview or just looking to optimize your resume for job applications, Study Buddy has got you covered with real-time MCQ generation, PDF querying, YouTube transcript-based note generation, contest tracking, and ATS resume optimization. Powered by advanced AI models like Google Gemini Pro and LangChain, the platform tailors resources to individual needs.
 
+##Demo
+https://www.youtube.com/watch?v=HD2UCnCWKJ8&t=31s
+
 ## Features
 
 ### 1. **Real-Time MCQ Generator**
