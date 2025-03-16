@@ -15,7 +15,7 @@ load_dotenv()
 
 api_key=os.getenv("GOOGLE_API_KEY")
 
-llm = genai.ChatGoogleGenerativeAI(google_api_key=api_key, model="gemini-pro")
+llm = genai.ChatGoogleGenerativeAI(google_api_key=api_key, model="gemini-1.5-pro-latest")
 
 template="""
 Text:{text}

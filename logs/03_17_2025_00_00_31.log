@@ -1,0 +1,50 @@
+[2025-03-17 00:57:48,972] 86 faiss.loader - INFO - Loading faiss with AVX2 support.
+[2025-03-17 00:57:48,988] 88 faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+[2025-03-17 00:58:11,838] 179 root - ERROR - Exception during MCQ generation: Traceback (most recent call last):
+  File "C:\Users\HP\OneDrive\Desktop\coding\RealTimeMCQGeneration-main - Copy\menu\mcqgen.py", line 169, in main
+    response = generate_evaluate_chain({
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\OneDrive\Desktop\coding\RealTimeMCQGeneration-main - Copy\menu\mcqgen.py", line 92, in generate_evaluate_chain
+    overall_chain = SequentialChain(
+                    ^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\site-packages\langchain_core\load\serializable.py", line 111, in __init__
+    super().__init__(*args, **kwargs)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\site-packages\pydantic\main.py", line 212, in __init__
+    validated_self = self.__pydantic_validator__.validate_python(data, self_instance=self)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pydantic_core._pydantic_core.ValidationError: 1 validation error for SequentialChain
+  Value error, Missing required input keys: {'mcqs'}, only had {'text', 'number', 'tone', 'quiz', 'response_json', 'subject'} [type=value_error, input_value={'chains': [LLMChain(verb...view'], 'verbose': True}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.9/v/value_error
+
+[2025-03-17 00:58:26,766] 179 root - ERROR - Exception during MCQ generation: Traceback (most recent call last):
+  File "C:\Users\HP\OneDrive\Desktop\coding\RealTimeMCQGeneration-main - Copy\menu\mcqgen.py", line 169, in main
+    response = generate_evaluate_chain({
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\OneDrive\Desktop\coding\RealTimeMCQGeneration-main - Copy\menu\mcqgen.py", line 92, in generate_evaluate_chain
+    overall_chain = SequentialChain(
+                    ^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\site-packages\langchain_core\load\serializable.py", line 111, in __init__
+    super().__init__(*args, **kwargs)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\site-packages\pydantic\main.py", line 212, in __init__
+    validated_self = self.__pydantic_validator__.validate_python(data, self_instance=self)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pydantic_core._pydantic_core.ValidationError: 1 validation error for SequentialChain
+  Value error, Missing required input keys: {'mcqs'}, only had {'text', 'number', 'tone', 'quiz', 'response_json', 'subject'} [type=value_error, input_value={'chains': [LLMChain(verb...view'], 'verbose': True}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.9/v/value_error
+
+[2025-03-17 00:58:32,851] 179 root - ERROR - Exception during MCQ generation: Traceback (most recent call last):
+  File "C:\Users\HP\OneDrive\Desktop\coding\RealTimeMCQGeneration-main - Copy\menu\mcqgen.py", line 169, in main
+    response = generate_evaluate_chain({
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\OneDrive\Desktop\coding\RealTimeMCQGeneration-main - Copy\menu\mcqgen.py", line 92, in generate_evaluate_chain
+    overall_chain = SequentialChain(
+                    ^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\site-packages\langchain_core\load\serializable.py", line 111, in __init__
+    super().__init__(*args, **kwargs)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\site-packages\pydantic\main.py", line 212, in __init__
+    validated_self = self.__pydantic_validator__.validate_python(data, self_instance=self)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pydantic_core._pydantic_core.ValidationError: 1 validation error for SequentialChain
+  Value error, Missing required input keys: {'mcqs'}, only had {'text', 'number', 'tone', 'quiz', 'response_json', 'subject'} [type=value_error, input_value={'chains': [LLMChain(verb...view'], 'verbose': True}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.9/v/value_error
+

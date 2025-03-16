@@ -1,0 +1,2 @@
+[2024-10-11 02:32:20,084] 86 faiss.loader - INFO - Loading faiss with AVX2 support.
+[2024-10-11 02:32:20,102] 88 faiss.loader - INFO - Successfully loaded faiss with AVX2 support.

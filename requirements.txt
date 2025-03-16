@@ -27,3 +27,4 @@ httpx-oauth
 firebase-admin
 streamlit-authenticator
 youtube-transcript-api
+genai

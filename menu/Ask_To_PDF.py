@@ -17,8 +17,18 @@ import asyncio
 
 load_dotenv()
 
-os.getenv("GOOGLE_API_KEY")
-genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+# Configure Google API
+api_key = os.getenv("GOOGLE_API_KEY")
+if not api_key:
+    st.error("Google API Key not found. Please add it to your .env file.")
+    st.stop()
+
+genai.configure(api_key=api_key)
+
+# List available models for debugging
+models = genai.list_models()
+available_models = [model.name for model in models]
+print("Available models:", available_models)
 
 def get_pdf_text(pdf_docs):
     text = ""
@@ -67,7 +77,25 @@ async def get_conversational_chain():
     Answer:
     """
 
-    model = ChatGoogleGenerativeAI(model="gemini-pro", temperature=0.3)
+    # Updated model name - use an appropriate model from the available_models list
+    # Trying three options in order of preference
+    model_names = ["models/gemini-1.5-pro", "models/gemini-pro", "gemini-pro"]
+    model_name = None
+    
+    for name in model_names:
+        if name in available_models or (name.startswith("models/") and name[7:] in [m[7:] if m.startswith("models/") else m for m in available_models]):
+            model_name = name
+            break
+    
+    if not model_name:
+        # Fallback to the first available model
+        if available_models:
+            model_name = available_models[0]
+        else:
+            raise ValueError("No Gemini models available with your API key")
+    
+    print(f"Using model: {model_name}")
+    model = ChatGoogleGenerativeAI(model=model_name, temperature=0.3)
 
     prompt = PromptTemplate(template=prompt_template, input_variables=["context", "question"])
     chain = load_qa_chain(model, chain_type="stuff", prompt=prompt)
@@ -75,27 +103,37 @@ async def get_conversational_chain():
     return chain
 
 def user_input(user_question):
-    vector_store = load_vector_store()
-    docs = vector_store.similarity_search(user_question)
+    try:
+        vector_store = load_vector_store()
+        docs = vector_store.similarity_search(user_question)
 
-    chain = asyncio.run(get_conversational_chain())
+        chain = asyncio.run(get_conversational_chain())
 
-    response = chain(
-        {"input_documents": docs, "question": user_question},
-        return_only_outputs=True
-    )
+        response = chain(
+            {"input_documents": docs, "question": user_question},
+            return_only_outputs=True
+        )
 
-    st.session_state.output_text = response["output_text"]
-    st.write("Reply: ", st.session_state.output_text)
+        st.session_state.output_text = response["output_text"]
+        st.write("Reply: ", st.session_state.output_text)
+    except Exception as e:
+        st.error(f"An error occurred: {str(e)}")
+        import traceback
+        st.error(traceback.format_exc())
 
 def main():
-    # st.set_page_config("College.ai", page_icon='🔍', layout='centered')
+    # REMOVED: st.set_page_config("PDF QA", page_icon='🔍', layout='centered')
    
     st.write("<h1><center>One-Click Conversions</center></h1>", unsafe_allow_html=True)
     st.write("")
-    with open('src/Robot.json', encoding='utf-8') as anim_source:
-        animation = json.load(anim_source)
-    st_lottie(animation, 1, True, True, "high", 100, -200)
+    
+    # Load animation if file exists
+    try:
+        with open('src/Robot.json', encoding='utf-8') as anim_source:
+            animation = json.load(anim_source)
+        st_lottie(animation, 1, True, True, "high", 100, -200)
+    except Exception as e:
+        st.warning(f"Animation file not found or couldn't be loaded: {str(e)}")
 
     if 'pdf_docs' not in st.session_state:
         st.session_state.pdf_docs = None
@@ -114,12 +152,15 @@ def main():
     if st.button("Train & Process"):
         if pdf_docs:
             with st.spinner("🤖Processing..."):
-                raw_text = get_pdf_text(pdf_docs)
-                text_chunks = get_text_chunks(raw_text)
-                get_vector_store(text_chunks)
-                st.success("Done, AI is trained")
-
-    
+                try:
+                    raw_text = get_pdf_text(pdf_docs)
+                    text_chunks = get_text_chunks(raw_text)
+                    get_vector_store(text_chunks)
+                    st.success("Done, AI is trained")
+                except Exception as e:
+                    st.error(f"Error during processing: {str(e)}")
+        else:
+            st.warning("Please upload PDF files first.")
 
     user_question = st.text_input("Ask a Question from the PDF Files")
     enter_button = st.button('Enter')
@@ -134,6 +175,8 @@ def main():
 
         if user_question:
             user_input(user_question)
+        else:
+            st.warning("Please enter a question.")
 
     if pdf_docs:
         st.session_state.pdf_docs = pdf_docs
