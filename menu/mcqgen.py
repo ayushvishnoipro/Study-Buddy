@@ -8,12 +8,16 @@ import streamlit as st
 from src.mcqgenerator.utils import read_file
 from src.mcqgenerator.MCQGenerator import generate_evaluate_chain
 
+<<<<<<< HEAD
 # Load Response JSON
 with open("Response.json", 'r') as file:
     RESPONSE_JSON = json.load(file)
 
 def main():
     st.title("Real-Time MCQ Creator with LangChain & Google Gemini Pro")
+=======
+    st.title("QuizCraft: The MCQ Genie")
+>>>>>>> 2601b0091b3967061b07c95b3da9078ac19c4e99
 
     # Initialize session state
     if 'quiz_data' not in st.session_state:
@@ -140,7 +144,10 @@ def main():
 
         if st.button("Start New Quiz"):
             reset_quiz()
+<<<<<<< HEAD
             st.experimental_rerun()
 
 if __name__ == "__main__":
     main()
+=======
+>>>>>>> 2601b0091b3967061b07c95b3da9078ac19c4e99
